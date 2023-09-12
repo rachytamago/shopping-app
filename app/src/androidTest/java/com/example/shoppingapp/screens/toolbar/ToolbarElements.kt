@@ -1,7 +1,10 @@
 package com.example.shoppingapp.screens.toolbar
 
-internal object ToolbarElements {
+import androidx.compose.ui.test.junit4.ComposeContentTestRule
+import androidx.compose.ui.test.onNodeWithTag
 
-    const val cartButton = "cart_button"
-    const val cartBadge = "cart_badge"
+internal class ToolbarElements(testRule: ComposeContentTestRule) {
+
+    val cartButton = testRule.onNodeWithTag("cart_button")
+    val cartBadge = testRule.onNodeWithTag("cart_badge")
 }

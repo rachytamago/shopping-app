@@ -1,35 +1,37 @@
 package com.example.shoppingapp.screens.checkout
 
-internal object CheckoutElements {
+import androidx.compose.ui.test.junit4.ComposeContentTestRule
+import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onNodeWithTag
 
-    const val checkoutOverviewHeading = "checkout_overview_heading"
-    const val checkoutCompleteHeading = "checkout_complete_heading"
+internal class CheckoutElements(testRule: ComposeContentTestRule) {
+
+    val checkoutOverviewHeading = testRule.onNodeWithTag("checkout_overview_heading")
+    val checkoutCompleteHeading = testRule.onNodeWithTag("checkout_complete_heading")
     
     // Overview
-    const val paymentInfoTitle = "payment_info_title"
-    const val paymentInfo = "payment_info"
-    const val shippingInfoTitle = "shipping_info_title"
-    const val shippingInfo = "shipping_info"
-    const val priceTotalTitle = "price_total_title"
-    const val itemTotal = "item_total"
-    const val taxTotal = "tax_total"
-    const val overallTotalPrice = "overall_total_price"
-    const val cancelButton = "cancel_button"
-    const val finishButton = "finish_button"
+    val paymentInfoTitle = testRule.onNodeWithTag("payment_info_title")
+    val paymentInfo = testRule.onNodeWithTag("payment_info")
+    val shippingInfoTitle = testRule.onNodeWithTag("shipping_info_title")
+    val shippingInfo = testRule.onNodeWithTag("shipping_info")
+    val priceTotalTitle = testRule.onNodeWithTag("price_total_title")
+    val itemTotal = testRule.onNodeWithTag("item_total")
+    val taxTotal = testRule.onNodeWithTag("tax_total")
+    val overallTotalPrice = testRule.onNodeWithTag("overall_total_price")
 
     // Complete
-    const val tickImage = "tick_image"
-    const val thankYouTitle = "thank_you_title"
-    const val orderDispatchedText = "order_dispatched"
+    val tickImage = testRule.onAllNodesWithTag("tick_image")
+    val thankYouTitle = testRule.onNodeWithTag("thank_you_title")
+    val orderDispatchedText = testRule.onNodeWithTag("order_dispatched")
 
     // Strings
-    const val overviewString = "Checkout: Overview"
-    const val completeString = "Checkout: Complete!"
-    const val paymentInfoString = "Payment Information"
-    const val shippingInfoString = "Shipping Information"
-    const val priceTotalString = "Price Total"
-    const val itemTotalString = "Item total:"
-    const val taxString = "Tax:"
-    const val overallTotalString = "Total:"
-    const val thankYouString = "Thank you for your order"
+    val overviewString = "Checkout: Overview"
+    val completeString = "Checkout: Complete!"
+    val paymentInfoString = "Payment Information"
+    val shippingInfoString = "Shipping Information"
+    val priceTotalString = "Price Total"
+    val itemTotalString = "Item total:"
+    val taxString = "Tax:"
+    val overallTotalString = "Total:"
+    val thankYouString = "Thank you for your order"
 }

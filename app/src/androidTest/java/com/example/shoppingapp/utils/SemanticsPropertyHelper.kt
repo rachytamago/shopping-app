@@ -1,24 +1,21 @@
 package com.example.shoppingapp.utils
 
 import androidx.compose.ui.semantics.SemanticsProperties
-import androidx.compose.ui.test.junit4.ComposeContentTestRule
-import androidx.compose.ui.test.onAllNodesWithTag
-import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.SemanticsNodeInteraction
+import androidx.compose.ui.test.SemanticsNodeInteractionCollection
 import androidx.compose.ui.text.AnnotatedString
 
 internal object SemanticsPropertyHelper {
 
-    fun ComposeContentTestRule.getTextOfElement(tag: String): String {
+    fun getTextOfElement(element: SemanticsNodeInteraction): String {
         return annotatedStringListToString(
-            onNodeWithTag(tag).fetchSemanticsNode()
-            .config[SemanticsProperties.Text]
+            element.fetchSemanticsNode().config[SemanticsProperties.Text]
         )
     }
 
-    fun ComposeContentTestRule.getTextOfElementAtIndex(tag: String, index: Int): String {
+    fun getTextOfElementAtIndex(element: SemanticsNodeInteractionCollection, index: Int, ): String {
         return annotatedStringListToString(
-            onAllNodesWithTag(tag)[index].fetchSemanticsNode()
-                .config[SemanticsProperties.Text]
+            element[index].fetchSemanticsNode().config[SemanticsProperties.Text]
         )
     }
 

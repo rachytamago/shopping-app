@@ -1,9 +1,13 @@
 package com.example.shoppingapp.screens.showcase
 
-internal object ShowcaseElements {
+import androidx.compose.ui.test.junit4.ComposeContentTestRule
+import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onNodeWithTag
 
-    const val productsTitle = "products_title"
-    const val showcaseItem = "showcase_item"
+internal class ShowcaseElements(testRule: ComposeContentTestRule) {
 
-    const val productsString = "Products"
+    val productsTitle = testRule.onNodeWithTag("products_title")
+    val showcaseItem = testRule.onAllNodesWithTag("showcase_item")
+
+    val productsString = "Products"
 }

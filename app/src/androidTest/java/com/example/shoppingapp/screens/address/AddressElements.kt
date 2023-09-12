@@ -1,14 +1,17 @@
 package com.example.shoppingapp.screens.address
 
-internal object AddressElements {
+import androidx.compose.ui.test.junit4.ComposeContentTestRule
+import androidx.compose.ui.test.onNodeWithTag
 
-    const val yourInformationTitle = "your_information_title"
-    const val firstNameField = "first_name_field"
-    const val lastNameField = "last_name_field"
-    const val postalCodeField = "postal_code_field"
+internal class AddressElements(testRule: ComposeContentTestRule) {
 
-    const val yourInformationString = "Checkout: Your Information"
-    const val firstNameString = "First Name"
-    const val lastNameString = "Last Name"
-    const val postalCodeString = "Zip/Postal Code"
+    val yourInformationTitle = testRule.onNodeWithTag("your_information_title")
+    val firstNameField = testRule.onNodeWithTag("first_name_field")
+    val lastNameField = testRule.onNodeWithTag("last_name_field")
+    val postalCodeField = testRule.onNodeWithTag("postal_code_field")
+
+    val yourInformationString = "Checkout: Your Information"
+    val firstNameString = "First Name"
+    val lastNameString = "Last Name"
+    val postalCodeString = "Zip/Postal Code"
 }

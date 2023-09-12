@@ -1,14 +1,17 @@
 package com.example.shoppingapp.screens.common
 
-internal object CommonElements {
+import androidx.compose.ui.test.junit4.ComposeContentTestRule
+import androidx.compose.ui.test.onNodeWithTag
 
-    const val cancelButton = "cancel_button"
-    const val continueButton = "continue_button"
-    const val finishButton = "finish_button"
-    const val homeButton = "home_button"
+internal class CommonElements(testRule: ComposeContentTestRule) {
 
-    const val cancelString = "Cancel"
-    const val continueString = "Continue"
-    const val finishString = "Finish"
-    const val backHomeString = "Back Home"
+    val cancelButton = testRule.onNodeWithTag("cancel_button")
+    val continueButton = testRule.onNodeWithTag("continue_button")
+    val finishButton = testRule.onNodeWithTag("finish_button")
+    val homeButton = testRule.onNodeWithTag("home_button")
+
+    val cancelString = "Cancel"
+    val continueString = "Continue"
+    val finishString = "Finish"
+    val backHomeString = "Back Home"
 }

@@ -1,12 +1,15 @@
 package com.example.shoppingapp.screens.login
 
-internal object LoginElements {
+import androidx.compose.ui.test.junit4.ComposeContentTestRule
+import androidx.compose.ui.test.onNodeWithTag
 
-    const val usernameField = "username_field"
-    const val passwordField = "password_field"
-    const val loginButton = "login_button"
+internal class LoginElements(testRule: ComposeContentTestRule) {
 
-    const val usernameString = "Username"
-    const val passwordString = "Password"
-    const val loginString = "Login"
+    val usernameField = testRule.onNodeWithTag("username_field")
+    val passwordField = testRule.onNodeWithTag("password_field")
+    val loginButton = testRule.onNodeWithTag("login_button")
+
+    val usernameString = "Username"
+    val passwordString = "Password"
+    val loginString = "Login"
 }

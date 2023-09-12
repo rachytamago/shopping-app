@@ -1,23 +1,27 @@
 package com.example.shoppingapp.screens.cart
 
-internal object CartElements {
+import androidx.compose.ui.test.junit4.ComposeContentTestRule
+import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onNodeWithTag
 
-    const val checkoutButton = "checkout_button"
-    const val continueShoppingButton = "continue_shopping_button"
-    const val quantityHeading = "quantity_heading"
-    const val descriptionHeading = "description_heading"
-    const val yourCartTitle = "your_cart_title"
-    const val cartListItem = "cart_list_item"
-    const val cartItemQuantity = "cart_item_quantity"
-    const val cartItemTitle = "cart_item_title"
-    const val cartItemDescription = "cart_item_description"
-    const val cartItemPrice = "cart_item_price"
-    const val cartItemRemoveButton = "remove_button"
+internal class CartElements(testRule: ComposeContentTestRule) {
 
-    const val checkoutString = "Checkout"
-    const val continueShoppingString = "Continue Shopping"
-    const val quantityShortString = "QTY"
-    const val yourCartString = "Your Cart"
-    const val removeString = "Remove"
-    const val descriptionString = "Description"
+    val checkoutButton = testRule.onNodeWithTag("checkout_button")
+    val continueShoppingButton = testRule.onNodeWithTag("continue_shopping_button")
+    val quantityHeading = testRule.onNodeWithTag("quantity_heading")
+    val descriptionHeading = testRule.onNodeWithTag("description_heading")
+    val yourCartTitle = testRule.onNodeWithTag("your_cart_title")
+    val cartListItem = testRule.onAllNodesWithTag("cart_list_item")
+    val cartItemQuantity = testRule.onAllNodesWithTag("cart_item_quantity")
+    val cartItemTitle = testRule.onAllNodesWithTag("cart_item_title")
+    val cartItemDescription = testRule.onAllNodesWithTag("cart_item_description")
+    val cartItemPrice = testRule.onAllNodesWithTag("cart_item_price")
+    val cartItemRemoveButton = testRule.onAllNodesWithTag("remove_button")
+
+    val checkoutString = "Checkout"
+    val continueShoppingString = "Continue Shopping"
+    val quantityShortString = "QTY"
+    val yourCartString = "Your Cart"
+    val removeString = "Remove"
+    val descriptionString = "Description"
 }
