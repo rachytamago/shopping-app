@@ -8,6 +8,7 @@ import androidx.activity.ComponentActivity
  * Not confident with this implementation, just wanted to demonstrate the idea
  */
 class ActivityChangeListener : ComponentActivity() {
+    // Makes it possible to get the activity from the rule
     var currentActivity: Activity? = null
 
     // Override the onCreate method to log activity changes
@@ -17,11 +18,8 @@ class ActivityChangeListener : ComponentActivity() {
         currentActivity = this
     }
 
+    // Set currentActivity in case `onCreate` was called before listener init
     fun startMonitoring() {
         currentActivity = this
-    }
-
-    fun stopMonitoring() {
-        currentActivity = null
     }
 }

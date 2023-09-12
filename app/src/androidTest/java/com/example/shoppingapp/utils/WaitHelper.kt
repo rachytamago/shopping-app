@@ -1,10 +1,9 @@
 package com.example.shoppingapp.utils
 
-import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
-import androidx.compose.ui.test.onNodeWithTag
+import com.example.shoppingapp.utils.SemanticsPropertyHelper.getTextOfElement
 
 internal object WaitHelper {
 
@@ -13,9 +12,8 @@ internal object WaitHelper {
     internal fun ComposeContentTestRule.waitUntilElementHasText(tag: String, text: String) {
         with(this) {
             waitUntil(DEFAULT_TIMEOUT) {
-                onAllNodesWithText(text).fetchSemanticsNodes().size == 1
+                getTextOfElement(tag) == text
             }
-            onNodeWithTag(tag).assertTextEquals(text)
         }
     }
 

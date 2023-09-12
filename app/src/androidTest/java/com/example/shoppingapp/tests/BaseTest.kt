@@ -11,5 +11,5 @@ open class BaseTest {
     val activityLogRule = ActivityLogTestRule()
 
     @get:Rule(order = 1)
-    val composeActivityRule = createAndroidComposeRule<MainActivity>() // if login is not the main activity: createAndroidComposeRule<LoginActivity>()
+    val composeActivityRule = createAndroidComposeRule<MainActivity>() // assuming login is the main activity
 }

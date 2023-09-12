@@ -1,17 +1,22 @@
 package com.example.shoppingapp.screens.checkout
 
+import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.assertTextEquals
-import androidx.compose.ui.test.junit4.ComposeContentTestRule
+import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.example.shoppingapp.screens.common.CommonElements
 import com.example.shoppingapp.utils.Currency
 import com.example.shoppingapp.utils.WaitHelper.waitUntilAtLeastOneElementWithTagExists
 import com.example.shoppingapp.utils.WaitHelper.waitUntilElementHasText
+import com.example.shoppingapp.utils.assertActivity
 
-internal class CheckoutActions(private val testRule: ComposeContentTestRule) {
+internal class CheckoutActions<A : ComponentActivity>(
+    private val testRule: AndroidComposeTestRule<ActivityScenarioRule<A>, A>
+) {
     private val checkoutElements by lazy { CheckoutElements }
     private val commonElements by lazy { CommonElements }
 
@@ -23,6 +28,7 @@ internal class CheckoutActions(private val testRule: ComposeContentTestRule) {
             checkoutElements.apply {
                 waitUntilElementHasText(checkoutOverviewHeading, overviewString)
                 waitUntilElementHasText(paymentInfoTitle, paymentInfoString)
+                assertActivity(activity, "CheckoutInfoActivity") // Would be CheckoutInfoActivity::class.java.simpleName, not a string
                 onNodeWithTag(paymentInfo).assertIsDisplayed()
                 onNodeWithTag(shippingInfoTitle).assertTextEquals(shippingInfoString)
                 onNodeWithTag(shippingInfo).assertIsDisplayed()
@@ -44,6 +50,7 @@ internal class CheckoutActions(private val testRule: ComposeContentTestRule) {
             checkoutElements.apply {
                 waitUntilElementHasText(checkoutCompleteHeading, completeString)
                 waitUntilAtLeastOneElementWithTagExists(tickImage)
+                assertActivity(activity, "CheckoutCompleteActivity") // Would be CheckoutCompleteActivity::class.java.simpleName, not a string
                 onNodeWithTag(thankYouTitle).assertTextEquals(thankYouString)
                 onNodeWithTag(orderDispatchedText).assertIsDisplayed()
             }

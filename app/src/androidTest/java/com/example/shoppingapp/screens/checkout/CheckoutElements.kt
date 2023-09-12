@@ -13,7 +13,7 @@ internal object CheckoutElements {
     const val priceTotalTitle = "price_total_title"
     const val itemTotal = "item_total"
     const val taxTotal = "tax_total"
-    const val overallTotalPrice = "overal_total_price"
+    const val overallTotalPrice = "overall_total_price"
     const val cancelButton = "cancel_button"
     const val finishButton = "finish_button"
 

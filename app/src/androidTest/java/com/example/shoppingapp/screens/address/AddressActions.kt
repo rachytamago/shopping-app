@@ -1,15 +1,20 @@
 package com.example.shoppingapp.screens.address
 
+import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.assertTextEquals
-import androidx.compose.ui.test.junit4.ComposeContentTestRule
+import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.example.shoppingapp.screens.common.CommonElements
 import com.example.shoppingapp.utils.UserDetails
 import com.example.shoppingapp.utils.WaitHelper.waitUntilElementHasText
+import com.example.shoppingapp.utils.assertActivity
 
-internal class AddressActions(private val testRule: ComposeContentTestRule) {
+internal class AddressActions<A : ComponentActivity>(
+    private val testRule: AndroidComposeTestRule<ActivityScenarioRule<A>, A>
+) {
     private val addressElements by lazy { AddressElements }
     private val commonElements by lazy { CommonElements }
 
@@ -31,6 +36,7 @@ internal class AddressActions(private val testRule: ComposeContentTestRule) {
             addressElements.apply {
                 waitUntilElementHasText(yourInformationTitle, yourInformationString)
                 waitUntilElementHasText(firstNameField, firstNameString)
+                assertActivity(activity, "AddressActivity") // Would be AddressActivity::class.java.simpleName, not a string
                 onNodeWithTag(lastNameField).assertTextEquals(lastNameString)
                 onNodeWithTag(postalCodeField).assertTextEquals(postalCodeString)
             }

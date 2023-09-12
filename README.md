@@ -6,9 +6,9 @@ Note: this is my first time using the Jetpack Compose libraries... hopefully it 
 
 #### a. How do you know the test went to the next screen? What if the network connection is slow?
 
-I have created a `WaitHelper` and used it to check for the slowest loading elements (images, buttons, etc...) before proceeding with the steps on the next page. By using `AndroidComposeTestRule` as in `LoginActions` the activity name can also be asserted against the expected when checking the screen layout.
+I have created a `WaitHelper` and used it to check for the slowest loading elements (images, buttons, etc...) before proceeding with the steps on the next page. Also, by using `AndroidComposeTestRule` instead of `ComposeContentTestRule` the activity name can be asserted against the expected screen when asserting the layout - this will automatically log the activity/screen name if it is not the expected result, but could be updated to log the name by default too.
 
-In addition I have created a rule which automatically logs the activity name when it is changed by overriding `onCreate`. I'm not confident this will work in its current state but wanted to demonstrate the idea.
+In addition I have experimented with a listener and rule which automatically log the activity name when it is changed by overriding `onCreate` from `ComponentActivity` (I would need to support `AppCompatActivity` if it wasn't a Compose only app. I'm not confident this will work in its current state but wanted to demonstrate the idea.
 
 #### b. Implement an internal method that handles this ✔
 

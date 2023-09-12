@@ -1,19 +1,24 @@
 package com.example.shoppingapp.screens.cart
 
+import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.assertTextEquals
-import androidx.compose.ui.test.junit4.ComposeContentTestRule
+import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.example.shoppingapp.utils.SemanticsPropertyHelper.getTextOfElementAtIndex
 import com.example.shoppingapp.utils.Currency
 import com.example.shoppingapp.utils.WaitHelper.waitUntilAtLeastOneElementWithTextExists
 import com.example.shoppingapp.utils.WaitHelper.waitUntilElementHasText
+import com.example.shoppingapp.utils.assertActivity
 
-internal class CartActions(private val testRule: ComposeContentTestRule) {
+internal class CartActions<A : ComponentActivity>(
+    private val testRule: AndroidComposeTestRule<ActivityScenarioRule<A>, A>
+) {
     private val cartElements by lazy { CartElements }
 
     fun clickCheckoutButton() =
@@ -24,6 +29,7 @@ internal class CartActions(private val testRule: ComposeContentTestRule) {
             cartElements.apply {
                 waitUntilElementHasText(yourCartTitle, yourCartString)
                 waitUntilElementHasText(continueShoppingButton, continueShoppingString)
+                assertActivity(activity, "CartActivity") // Would be CartActivity::class.java.simpleName, not a string
                 onNodeWithText(checkoutButton).assertTextEquals(checkoutString)
                 onNodeWithText(quantityHeading).assertTextEquals(quantityShortString)
                 onNodeWithText(descriptionHeading).assertTextEquals(descriptionString)
@@ -60,7 +66,7 @@ internal class CartActions(private val testRule: ComposeContentTestRule) {
                     if (itemQuantities.containsKey(itemName)) {
                         // Assert the quantity for that item is correct
                         onAllNodesWithTag(cartItemQuantity)[itemIndex]
-                            .assertTextContains(itemQuantities[itemName].toString())
+                            .assertTextEquals(itemQuantities[itemName].toString())
                     }
                 }
             }
